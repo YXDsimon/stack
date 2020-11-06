@@ -12,7 +12,7 @@ private:
     int MaxSize;
 
 public:
-    Stack(int maxSize)
+    Stack(int const &maxSize)
     {
         MaxSize = maxSize;
     }
@@ -25,7 +25,11 @@ public:
     }
     bool full() const
     { // 如果为满则返回真。
-        return elems.empty();
+        return elems.size() == MaxSize;
+    }
+    int size() const // 返回栈的元素数量
+    {
+        return elems.size();
     }
 };
 
@@ -33,6 +37,10 @@ template <class T>
 void Stack<T>::push(T const &elem)
 {
     // 追加传入元素的副本
+    if (full())
+    {
+        throw out_of_range("Stack<>::push(): full stack");
+    }
     elems.push_back(elem);
 }
 
@@ -62,15 +70,17 @@ int main()
 {
     try
     {
-        Stack<int> intStack(5);       // int 类型的栈
+        Stack<int> intStack(1);       // int 类型的栈,最大长度为1
         Stack<string> stringStack(5); // string 类型的栈
 
         // 操作 int 类型的栈
-        intStack.push(7);
-        cout << intStack.top() << endl;
+        intStack.push(114514);
+        cout << intStack.top() << endl
+             << intStack.size() << endl;
+        //intStack.push(541114);      // 测试栈已满时的错误提示
 
         // 操作 string 类型的栈
-        stringStack.push("hello");
+        stringStack.push("24YO, Student");
         cout << stringStack.top() << std::endl;
         stringStack.pop();
         stringStack.pop();
