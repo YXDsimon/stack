@@ -41,7 +41,7 @@ void Queue<T>::push(T const &elem)
     {
         throw out_of_range("Queue<>::push(): full Queue");
     }
-    elems.insert(elem);
+    elems.insert(elems.begin(), elem);
 }
 
 template <class T>
