@@ -77,13 +77,14 @@ int main()
         intStack.push(114514);
         cout << intStack.top() << endl
              << intStack.size() << endl;
-        //intStack.push(541114);      // 测试栈已满时的错误提示
+        //intStack.push(541114);      // 测试栈已满时尝试入栈
 
         // 操作 string 类型的栈
         stringStack.push("24YO, Student");
+        stringStack.push("aaaaaaaa");
         cout << stringStack.top() << std::endl;
         stringStack.pop();
-        stringStack.pop();
+        cout << stringStack.top() << std::endl;
     }
     catch (exception const &ex)
     {
